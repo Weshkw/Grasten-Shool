@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Payments</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles\view_fee_payments.css' %}">
+</head>
+<body>
+    <div>
+        {% include "header.html" %}
+    </div>
+    
+    {% if student_admission and  fee_payments  %}
+    <h1>Fee Payments</h1>
+    <p>N/b If the balance indicates negative, it means you have an overpayment.Overpayments will be rolled over to the next term.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Term</th>
+                    <th>Amount Paid</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fee_payment in fee_payments %}
+                    <tr>
+                        <td>{{ fee_payment.student.full_name }}</td>
+                        <td>{{ fee_payment.term_or_semester_name }}</td>
+                        <td>{{ fee_payment.amount_paid }}</td>
+                        <td>{{ fee_payment.balance }}</td>
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+    <div class="nothing">
+        <p>No fee-payments available.</p>
+    </div>
+        
+    {% endif %}
+</body>
+</html>

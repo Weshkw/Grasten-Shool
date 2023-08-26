@@ -1,0 +1,55 @@
+
+    /* Use a custom font for the labels and inputs */
+    @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+    /* Use a flexbox layout for the div container */
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+
+    /* Style the form element */
+    form {
+        width: 80%;
+        max-width: 400px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #fff;
+        font-family: 'Roboto', sans-serif;
+        
+    }
+
+    /* Style the label elements */
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    /* Style the input elements */
+    input {
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 10px;
+        padding-right: 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    /* Style the submit button */
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    /* Change the button color on hover */
+    input[type="submit"]:hover {
+        background-color: #0069d9;
+    }

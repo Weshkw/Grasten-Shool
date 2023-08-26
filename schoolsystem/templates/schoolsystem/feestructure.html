@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/feestructure.css' %}">
+    <title>Fee Structure</title>
+</head>
+<body>
+    <div>
+        {% include "header.html" %}
+    </div>
+    <div class="feestructure_content">
+        <h1>Grasten Academy Fee Structure</h1>
+        
+            {% for fee_structure in fees_structures %}
+        <div class="exactcontent">
+            <h4>{{ fee_structure.fees_structure_description }}</h4>
+            <a href="{{ fee_structure.fees_structure.url }}">Click here to View/download fees structure.</a>
+        </div>
+            {% endfor %}
+        
+
+    </div>
+
+</body>
+<div class="footer">
+    {% include "footer.html" %}
+</div>
+</html>

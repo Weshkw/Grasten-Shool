@@ -1,0 +1,91 @@
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Educational Resources</title>
+</head>
+<body>
+    <h1>Educational Resources</h1>
+    <ul>
+        {% for resource in resources %}
+            <li>
+                <h2>{{ resource.title }}</h2>
+                <p>{{ resource.description }}</p>
+                <p>Category: {{ resource.category }}</p>
+                <p>Appropriate Grade: {{ resource.appropriate_grade }}</p>
+                {% if resource.file %}
+                    <a href="{{ resource.file.url }}">Download File</a>
+                {% elif resource.link %}
+                    <a href="{{ resource.link }}">View Link</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+-->
+
+
+
+{% load static %}    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Resources</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/educational_resources.css' %}">
+</head>
+<body>
+    {% include "header.html" %}
+    {% if resources %}
+    <div class="educationalResources">
+
+        {% if student_admission and student_grade_level  %}
+            <div>
+                
+                <h1>Recommeded Library Resources</h1>
+            </div>
+            <a href="{% url 'all_resources' %}" class="allStudentResources">Browse All Resources</a>
+        {%else%}
+            <h1>Library</h1>
+        {% endif %}
+        <ul>
+            {% for resource in resources %}
+            <li>
+                <h2>{{ resource.title }}</h2>
+                <p>{{ resource.description }}</p>
+                <p>Subject: {{ resource.subject }}</p>
+                
+                {% if resource.file %}
+                    {% if ".jpg" in resource.file.url|lower or ".jpeg" in resource.file.url|lower or ".png" in resource.file.url|lower or ".gif" in resource.file.url|lower %}
+                        <img src="{{ resource.file.url }}" alt="Resource Image">
+                    {% elif ".mp4" in resource.file.url|lower or ".webm" in resource.file.url|lower or ".ogg" in resource.file.url|lower %}
+                        <video controls>
+                            <source src="{{ resource.file.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% endif %}
+                {% endif %}
+                
+                {% if ".pdf" in resource.file.url|lower %}
+                    <a class="download-link" href="{{ resource.file.url }}" download>Download </a>
+                {% elif ".doc" in resource.file.url|lower or ".docx" in resource.file.url|lower %}
+                    <a class="download-link" href="{{ resource.file.url }}" download>Download</a>
+                {% endif %}
+                
+                {% if resource.link %}
+                    <a href="{{ resource.link }}">Visit Link</a>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else%}
+    <div class="nothing">
+        <p>No library materials at this time. Check later.</p>
+    </div>
+        
+    {% endif %}
+</body>
+</html>

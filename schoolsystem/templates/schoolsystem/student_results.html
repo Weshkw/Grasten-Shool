@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        .container {
+            
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .exam-performance {
+            margin-top: 100px;
+        }
+
+        .no-results {
+            margin-top: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    {% include "header.html" %}
+    <div class="container">
+        {% if student_results %}
+        <div class="exam-performance">
+            <h1>Examination Performance of {{ student.full_name }} since {{ student.date_created }}</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Term/Semester</th>
+                        <th>Examination</th>
+                        <th>Score</th>
+                        <th>Teacher's Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in student_results %}
+                    <tr>
+                        <td>{{ result.year }}</td>
+                        <td>{{ result.term_or_semester_name }}</td>
+                        <td>{{ result.examination }}</td>
+                        <td>{{ result.score }}</td>
+                        <td>{{ result.teacher_comments }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="no-results">
+            <h4>Oops! There are no examination results to be displayed currently.</h4>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

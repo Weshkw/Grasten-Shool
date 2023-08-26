@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/userregistration.css' %}">
+    <title>User Registration</title>
+</head>
+<body>
+    <div class="userregistration">
+        <form method="post" action="{% url 'register' %}">
+            <h2>Register Here</h2>
+            <ul class="guidance">
+                <li>Students: Use Index number.</li>
+                <li>Teaching Staff: Provide TSC number.</li>
+                <li>Non-Teaching Staff: Enter ID Number.</li>
+            </ul>
+
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% csrf_token %}
+
+            <label for="id_number">Index number/ID Number/TSC number:</label>
+            <input type="text" name="id_number" required><br><br>
+
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" required><br><br>
+
+            <label for="second_name">Second Name:</label>
+            <input type="text" name="second_name" required><br><br>
+
+            <label for="surname">Surname:</label>
+            <input type="text" name="surname" required><br><br>
+
+            <label for="phone_number">Phone Number:</label>
+            <input type="text" name="phone_number" required><br><br>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br><br>
+
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password" required><br><br>
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>

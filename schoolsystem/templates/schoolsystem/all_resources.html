@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/educational_resources.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    {% include "header.html" %}
+    {% if resources %}
+    <div class="educationalResources">
+        <h1>Library</h1>
+    {% for resource in resources %}
+<li>
+    <h2>{{ resource.title }}</h2>
+    <p>{{ resource.description }}</p>
+    <p>Subject: {{ resource.subject }}</p>
+    
+    {% if resource.file %}
+        {% if ".jpg" in resource.file.url|lower or ".jpeg" in resource.file.url|lower or ".png" in resource.file.url|lower or ".gif" in resource.file.url|lower %}
+            <img src="{{ resource.file.url }}" alt="Resource Image">
+        {% elif ".mp4" in resource.file.url|lower or ".webm" in resource.file.url|lower or ".ogg" in resource.file.url|lower %}
+            <video controls>
+                <source src="{{ resource.file.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        {% endif %}
+    {% endif %}
+    
+    {% if ".pdf" in resource.file.url|lower %}
+        <a class="download-link" href="{{ resource.file.url }}" download>Download </a>
+    {% elif ".doc" in resource.file.url|lower or ".docx" in resource.file.url|lower %}
+        <a class="download-link" href="{{ resource.file.url }}" download>Download</a>
+    {% endif %}
+    
+    {% if resource.link %}
+        <a href="{{ resource.link }}">Visit Link</a>
+    {% endif %}
+</li>
+{% endfor %}
+</div>
+{% else%}
+<p>No library materials at this time. Check later.</p>
+{% endif %}
+</body>
+</html>
+

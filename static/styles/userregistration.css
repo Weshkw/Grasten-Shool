@@ -1,0 +1,52 @@
+
+.userregistration {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #023a52;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.userregistration h2 {
+  text-align: center;
+  color: #ffffff;
+}
+
+.guidance{
+  background-color: #064f87;
+  font-family: cursive;
+  color: #ffffff;
+  border-radius: 0 20px 0 20px;
+}
+
+.userregistration label {
+  display: block;
+  margin-bottom: 5px;
+  color: #faf98b;
+}
+
+.userregistration input[type="text"],
+.userregistration input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.userregistration input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+ 

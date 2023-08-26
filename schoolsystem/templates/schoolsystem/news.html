@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/news.css' %}">
+    <title>Latest News</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        {% include "header.html" %}
+    </div>
+    <div class="container">
+        {% if latest_news %}
+        <div class="page-heading">
+            <h2 >Discover the Latest News</h2>
+        </div>
+        
+
+        {% for news in latest_news %}
+
+        <div class="news-content">
+            <h3>{{ news.title }}</h3>
+            {% if news.image %}
+            <div class="image-container">
+                <img class="news-image" src="{{ news.image.url }}" alt="{{ news.title }}">
+            </div>
+            {% endif %}
+            <p>{{ news.content }}</p>
+            
+        </div>
+
+        {% endfor %}
+
+        {% else %}
+        <div class="no-news">
+            <p>Oops, no news to display at the moment. Check back later!</p>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+    <footer>
+        {% include "footer.html" %}
+    </footer>
+</html>

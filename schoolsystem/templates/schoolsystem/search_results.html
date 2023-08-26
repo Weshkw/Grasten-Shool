@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles\view_fee_payments.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/news.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/feestructure.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/educational_resources.css' %}">
+</head>
+<body>
+    <h1>Search Results</h1>
+
+    {% if results.feestructures %}
+        <h2>Fees Structures</h2>
+        <ul>
+            {% for feestructure in results.feestructures %}
+                <li>{{ feestructure.fees_structure_description }}  <a href="{{ feestructure.fees_structure.url }}">Click here to View/download fees structure.</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if results.news %}
+        <h2>News</h2>
+        <ul>
+            {% for news_item in results.news %}
+                <li>{{ news_item.title }}</li>
+                {% if news_item.image %}
+                <div class="image-container">
+                    <img class="news-image" src="{{ news_item.image.url }}" alt="{{ news.title }}">
+                </div>
+                {% endif %}
+                <p>{{ news_item.content }}</p>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if results.resources %}
+        <h2>Library Resources</h2>
+        <ul>
+            {% for resource in results.resources %}
+                <h2>{{ resource.title }}</h2>
+                <p>{{ resource.description }}</p>
+                <p>Subject: {{ resource.subject }}</p>
+
+                {% if resource.file %}
+                {% if ".jpg" in resource.file.url|lower or ".jpeg" in resource.file.url|lower or ".png" in resource.file.url|lower or ".gif" in resource.file.url|lower %}
+                    <img src="{{ resource.file.url }}" alt="Resource Image">
+                {% elif ".mp4" in resource.file.url|lower or ".webm" in resource.file.url|lower or ".ogg" in resource.file.url|lower %}
+                    <video controls>
+                        <source src="{{ resource.file.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                {% endif %}
+            {% endif %}
+            
+            {% if ".pdf" in resource.file.url|lower %}
+                <a class="download-link" href="{{ resource.file.url }}" download>Download </a>
+            {% elif ".doc" in resource.file.url|lower or ".docx" in resource.file.url|lower %}
+                <a class="download-link" href="{{ resource.file.url }}" download>Download</a>
+            {% endif %}
+            
+            {% if resource.link %}
+                <a href="{{ resource.link }}">Visit Link</a>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if results.student_results %}
+        <h2>Examination Results</h2>
+        <ul>
+            {% for result in results.student_results %}
+                <li>{{ result.student.full_name }} - {{ result.examination }}: {{ result.score }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if results.fees %}
+        <h2>Fee Payments</h2>
+        <ul>
+            {% for fee in results.fees %}
+                <li>{{ fee.student.full_name }} - Term: {{ fee.term_or_semester_name }} - Paid: {{ fee.amount_paid }} - Balance: {{ fee.balance }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

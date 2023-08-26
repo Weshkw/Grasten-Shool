@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homepage</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/home.css' %}">
+
+
+    
+</head>
+<body>
+    <div>
+        {% include "header.html" %}
+    </div>
+
+<div class="welcome">
+    <div class="logo">
+        <img src="{% static 'WhatsApp Image 2023-07-04 at 1.31.02 PM.jpeg' %}" alt="image">
+    </div>
+    <div class="welcome-text">
+        <p>Welcome {{user.first_name}}</p>
+        <h1>Unleash Your Potential at Grasten Academy</h1>
+        {% if request.user.is_authenticated and student_admission %}
+        <div class="welcomelinks">
+            <a href="{% url 'studentresult' %}">Your Examination Results</a>
+            <a href="{% url 'view_fee_payments' %}">View Your Fee Details</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+
+
+<div class="academics">
+    <div class="academics1">
+        <p>Igniting the passion to learn.</p>
+        <p>Achieving Academic Excellence with Our Support.</p>
+    </div>
+    <div class="academics2">
+        {% if images_by_category.ACADEMICS %}
+            <div class="slideacademics">
+                <div class="slideshow-container">
+                    {% for image in images_by_category.ACADEMICS %}
+                        <div class="mySlides fade">
+                            <img src="{{ image.landing_page_picture.url }}" alt="{{ image.landing_page_picture_category }}">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <p>No academic images available.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+
+
+    <div class="Cocurricular">
+        <div class="Cocurricular1">
+            {% if images_by_category.COCURRICULAR %}
+            <div class="slidecocurricular">
+                <div class="slideshow-container">
+                    {% for image in images_by_category.COCURRICULAR %}
+                    <div class="slidescocurricular ">
+                        <img src="{{ image.landing_page_picture.url }}" alt="{{ image.landing_page_picture_category }}">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+                <p>No co-curricular images available.</p>
+            {% endif %}
+        </div>
+
+        <div class="Cocurricular2">
+            <p>We Unlock Co-Curricular Excellence at Grasten Academy. </p>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="infotech">
+        <div class="infotech1">
+            <p>We give students the vital ICT skills to conquer today and tomorrow. </p>
+        </div>
+        <div class="infotech2">
+            {% if images_by_category.ICT %}
+            <div class="slideinfotech">
+                <div class="slideshow-container">            
+                {% for image in images_by_category.ICT %}
+                    <div class="infotechslides1"  >
+                        <img src="{{ image.landing_page_picture.url }}" alt="{{ image.landing_page_picture_category }}">
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+            {% else %}
+                <p>No ICT images available.</p>
+            {% endif %}
+        </div>
+    </div>
+    
+
+    <div>
+        {% include "footer.html" %}
+    </div>
+</body>
+
+<script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 10000); // Change image every 2 seconds
+    }
+
+
+
+
+
+
+
+
+
+const slides = document.getElementsByClassName("slidescocurricular");
+let slideIndx = 0;
+
+function showNextSlide() { 
+  for (var i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  slideIndx++;
+  if (slideIndx > slides.length) {
+    slideIndx = 1;
+  }
+ 
+  slides[slideIndx - 1].style.display = "block";
+}
+
+
+showNextSlide();
+
+
+setInterval(showNextSlide, 13000);
+
+
+
+
+
+
+
+
+const infotechslides = document.getElementsByClassName("infotechslides1");
+let infotechslideIndx = 0;
+
+    function showNextinfotechSlide() { 
+        for (let i = 0; i < infotechslides.length; i++) {
+            infotechslides[i].style.display = "none";
+        }
+
+        infotechslideIndx++; 
+        if (infotechslideIndx > infotechslides.length) {
+            infotechslideIndx = 1;
+        }
+ 
+        infotechslides[infotechslideIndx - 1].style.display = "block";
+    }
+
+
+    showNextinfotechSlide();
+  
+
+    setInterval(showNextinfotechSlide, 16000);
+
+</script>
+</html>

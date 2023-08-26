@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/login.css' %}">
+    <title>login</title>
+</head>
+
+
+<body>
+   {%block content%} 
+
+
+   <div>
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <label for="id_number">ID number or Index number or TSC number:</label>
+        <input type="text" name="id_number" placeholder="ID number or Index number">
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="Enter password">
+
+        <input type="submit" value="Login">
+        <p>Haven't registered yet?</p>
+        <a href="{% url 'register' %}">Register</a>
+        <a href="{% url 'reset_password' %}">Reset Password</a>
+
+
+    </form>
+</div>
+
+
+
+
+   
+
+    {%endblock content%} 
+</body>
+
+
+
+</html>
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer</title>
+    <style>
+        body {
+            margin:0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        footer {
+           
+           
+            background-color: #164048;
+            margin-top: 5px;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer-contact {
+            margin-bottom: 20px;
+        }
+
+        .footer-contact h4 {
+            margin-top: 0;
+        }
+
+        .footer-contact p, .developer {
+            margin: 5px 0;
+        }
+
+        
+        .footer-contact a{
+           color: #ffffff;
+        }
+        .fa-whatsapp {
+            margin-right: 5px;
+            color: #fdfcfc;
+        }
+
+        #currentYear {
+            font-weight: bold;
+        }
+
+        .developer{
+            color: #c6c5c5;
+        }
+
+        .developer a {
+            color: #c6c5c5;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+    <footer>
+        <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+                Phone: <a href="tel:+254711716221">+254 711 716 221</a>
+            </p>
+            <a href="https://wa.me/254711716221" target="_blank" rel="noopener noreferrer">
+                <span class="fa fa-whatsapp"></span> Message on WhatsApp
+            </a>
+        </div>
+        <div class="footer-info">
+            <p>&copy; <span id="currentYear"></span> Grasten Academy. All rights reserved.</p>
+        </div>
+        <p class='developer'>
+            WebApp Developed by Kevin. Email: <a href="mailto:kevinwaweru1233@gmail.com">kevinwaweru1233@gmail.com</a>
+        </p>
+    </footer>
+    
+    <script>
+        const currentYearElement = document.getElementById("currentYear");
+        const currentYear = new Date().getFullYear();
+        currentYearElement.textContent = currentYear;
+    </script>
+</body>
+</html>
