@@ -16,9 +16,13 @@
     </div>
 
 <div class="welcome">
+    
     <div class="logo">
-        <img src="{% static 'WhatsApp Image 2023-07-04 at 1.31.02 PM.jpeg' %}" alt="image">
+        {% if logo_image %}
+        <img src="{{ logo_image.logo.url }}" alt="Logo">
+        {% endif %}
     </div>
+    
     <div class="welcome-text">
         <p>Welcome {{user.first_name}}</p>
         <h1>Unleash Your Potential at Grasten Academy</h1>

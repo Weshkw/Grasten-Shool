@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.db.models import Q
 from django import forms
 from django.contrib.auth.admin import UserAdmin
-from .models import Student, Subject,CustomUser,TeachingStaff,NonTeachingStaff,New,Bill,StaffGovernmentDeduction,StudentResult, AnyOtherPayment,Term_or_semester,FeePayment,EducationalResource,FeesStructure,landingPageImage
+from .models import Student, Subject,CustomUser,TeachingStaff,NonTeachingStaff,New,Bill,StaffGovernmentDeduction,StudentResult, AnyOtherPayment,Term_or_semester,FeePayment,EducationalResource,FeesStructure,landingPageImage,LogoImage
 
 
 @admin.register(CustomUser)
@@ -99,6 +99,8 @@ admin.site.register(Subject)
 
 
 admin.site.register(FeesStructure)
+
+admin.site.register(LogoImage)
 
 
 

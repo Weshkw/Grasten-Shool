@@ -452,6 +452,15 @@ class Bill(models.Model):
     
 
   
+class LogoImage(models.Model):
+    logo = models.ImageField(upload_to='logo_images')
+
+    def save(self, *args, **kwargs):
+        # Delete any existing logo images before saving the new one
+        LogoImage.objects.all().delete()
+        super(LogoImage, self).save(*args, **kwargs) 
+
+
     
 
 

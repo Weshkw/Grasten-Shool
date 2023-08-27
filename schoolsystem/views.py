@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib import messages
-from .models import Student,landingPageImage,FeesStructure,CustomUser,TeachingStaff,NonTeachingStaff,New,Bill,StaffGovernmentDeduction,StudentResult,FeePayment, EducationalResource 
+from .models import Student,landingPageImage,FeesStructure,CustomUser,TeachingStaff,NonTeachingStaff,New,Bill,StaffGovernmentDeduction,StudentResult,FeePayment, EducationalResource,LogoImage
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
@@ -33,7 +33,9 @@ def home(request):
         else:
             images_by_category[category] = [image]
 
-    context = {'student_admission': student_admission,'images_by_category': images_by_category,}
+    logo_image = LogoImage.objects.last()
+
+    context = {'student_admission': student_admission,'images_by_category': images_by_category,'logo_image': logo_image}
     return render(request, 'schoolsystem/home.html', context)
 
 
