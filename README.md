@@ -1,5 +1,5 @@
 # Grasten-Shool
-A website intended for both administrative and student purposes within a school context 
+A webapp intended for both administrative and student purposes within a school context 
 
 
 1. Educational Resources: The web app provides students with access to a range of educational materials.
