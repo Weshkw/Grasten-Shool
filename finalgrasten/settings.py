@@ -87,7 +87,7 @@ DATABASES = {
 		'ENGINE': 'django.db.backends.mysql',
 		'NAME': 'grasten_academy',
 		'USER': 'root',
-		'PASSWORD': 'kawesij7dengwesh,.',
+		'PASSWORD': 'kawesij7dengwe,.',
 		'HOST':'localhost',
 		'PORT':'3306',
 	}
