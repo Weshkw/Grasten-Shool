@@ -11,7 +11,7 @@
                 <td>{{ payment.term.name }}</td>
                 <td>{{ payment.get_payment_method_display }}</td>
                 <td class="numeric">{{ payment.amount_paid }}</td>
-                <td class="numeric">{{ payment.balance_after }}</td>
+                <td class="numeric">{{ payment.balance_after|floatformat:2 }}</td>
             </tr>
             {% empty %}
             <tr><td colspan="5" class="empty">No fee payments recorded.</td></tr>
