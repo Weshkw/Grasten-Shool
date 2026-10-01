@@ -1,0 +1,9 @@
+{% comment %}A news article. Expects: article.{% endcomment %}
+<article class="card news-article">
+    {% if article.image %}<img src="{{ article.image.url }}" alt="" loading="lazy">{% endif %}
+    <div>
+        <h2>{{ article.title }}</h2>
+        <p class="muted">{{ article.date_uploaded|date:"j F Y" }}</p>
+        <p>{{ article.content|linebreaksbr }}</p>
+    </div>
+</article>

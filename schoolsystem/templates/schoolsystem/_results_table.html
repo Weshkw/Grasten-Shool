@@ -1,0 +1,21 @@
+{% comment %}A table of examination results. Expects: results.{% endcomment %}
+<div class="card table-card">
+    <table>
+        <thead>
+            <tr><th>Year</th><th>Term</th><th>Examination</th><th class="numeric">Score</th><th>Teacher's comments</th></tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr>
+                <td>{{ result.year }}</td>
+                <td>{{ result.get_term_display }}</td>
+                <td>{{ result.get_examination_display }}</td>
+                <td class="numeric">{{ result.score }}</td>
+                <td>{{ result.teacher_comments }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5" class="empty">There are no examination results yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

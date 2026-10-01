@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Fees structure · Grasten Academy{% endblock %}
+
+{% block content %}
+<h1>Fees structure</h1>
+<div class="card">
+    <ul class="document-list">
+        {% for fees in fees_structures %}
+        {% include "schoolsystem/_fees_structure.html" %}
+        {% empty %}
+        <li class="empty">The fees structure will be published here soon.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% comment %}A library resource with its file or link. Expects: resource.{% endcomment %}
+<article class="card resource">
+    <p class="tag">{{ resource.get_category_display }} · {{ resource.subject }}</p>
+    <h2>{{ resource.title }}</h2>
+    <p>{{ resource.description }}</p>
+    {% if resource.media_kind == "image" %}
+    <img src="{{ resource.file.url }}" alt="{{ resource.title }}" loading="lazy">
+    {% elif resource.media_kind == "video" %}
+    <video src="{{ resource.file.url }}" controls preload="metadata"></video>
+    {% endif %}
+    <div class="resource-actions">
+        {% if resource.file %}<a class="button" href="{{ resource.file.url }}" download>Download</a>{% endif %}
+        {% if resource.link %}<a class="button" href="{{ resource.link }}" target="_blank" rel="noopener noreferrer">Open link</a>{% endif %}
+    </div>
+</article>

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Fee payments · Grasten Academy{% endblock %}
+
+{% block content %}
+{% if student %}
+<h1>Fee payments for {{ student.full_name }}</h1>
+<p class="muted">A negative balance means the term is overpaid; the overpayment rolls over to the next term.</p>
+{% include "schoolsystem/_fee_payments_table.html" %}
+{% else %}
+<p class="empty">This account does not belong to a student, so there are no fee payments to show.</p>
+{% endif %}
+{% endblock %}

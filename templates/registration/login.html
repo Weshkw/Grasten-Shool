@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Log in · Grasten Academy{% endblock %}
+
+{% block content %}
+<section class="card form-card">
+    <h1>Log in</h1>
+    {% if form.non_field_errors %}
+    <p class="form-error">That number and password did not match. Try again.</p>
+    {% endif %}
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <label for="{{ form.username.id_for_label }}">Admission, TSC or ID number</label>
+        {{ form.username }}
+        <label for="{{ form.password.id_for_label }}">Password</label>
+        {{ form.password }}
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit" class="button button-primary button-block">Log in</button>
+    </form>
+    <p class="form-footnote">No account, or forgotten your password? <a href="{% url 'account_help' %}">Get help</a>.</p>
+</section>
+{% endblock %}

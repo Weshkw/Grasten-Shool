@@ -1,0 +1,55 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Grasten Academy{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles/app.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-header-inner">
+            <a class="brand" href="{% url 'home' %}">Grasten Academy</a>
+            <form class="search" method="get" action="{% url 'search' %}" role="search">
+                <input type="search" name="q" value="{{ query|default:'' }}" placeholder="Search the school site" aria-label="Search">
+            </form>
+            <nav class="site-nav">
+                <a href="{% url 'news' %}">News</a>
+                <a href="{% url 'fees_structure' %}">Fees structure</a>
+                <a href="{% url 'educational_resources' %}">Library</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'password_change' %}">Change password</a>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="link-button">Log out</button>
+                </form>
+                {% else %}
+                <a class="button button-light" href="{% url 'login' %}">Log in</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <main class="page">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="message message-{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <h2>Contact us</h2>
+        <p>
+            Phone: <a href="tel:+254711716221">+254 711 716 221</a>
+            · <a href="https://wa.me/254711716221" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+        </p>
+        <p class="small">Developed by Kevin · <a href="mailto:kevinwaweru1233@gmail.com">kevinwaweru1233@gmail.com</a></p>
+        <p class="small">&copy; {% now "Y" %} Grasten Academy</p>
+    </footer>
+</body>
+</html>
